@@ -6,4 +6,4 @@ Personal starting ppoint configuration for web projects.  Incorporates a few dif
 ### Versionlog & Updates
 
 ####v1.1
-Added universal stylesheet for IE8 down, just a minified version of https://code.google.com/p/universal-ie6-css/ by Andy Clarke.
++ Added universal stylesheet for IE8 down, just a minified version of https://code.google.com/p/universal-ie6-css/ by Andy Clarke.
