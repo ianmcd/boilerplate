@@ -2,20 +2,20 @@
 
 Personal starting point configuration for web projects.  Incorporates a few different ideas/systems mixed to my liking, use at own risk.
 
-###Configuration
-####Sass
+##Configuration
+###Sass
 For configuration options checkout /css/config.rb, /css/sass/system.scss & /css/sass/core/_settings.scss
 
-#####config.rb
+####config.rb
 For all available properties: http://compass-style.org/help/tutorials/configuration-reference/
 
-#####system.scss
+####system.scss
 Master import file, susy and compass are enabled, to disable these options comment out their respective @import lines.
 
-#####_settings.scss
+####_settings.scss
 Variables & mixins file, as well as custom resets in addition to or overriding _normalize.scss.  Only basic properties added initially.
 
-### Versionlog & Updates
-####v1.1
+## Versionlog & Updates
+###v1.1
 + Added universal stylesheet for IE8 down, just a minified version of https://code.google.com/p/universal-ie6-css/ by Andy Clarke.
 + Added susy support
