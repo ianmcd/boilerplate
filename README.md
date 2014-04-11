@@ -16,6 +16,9 @@ Master import file, susy and compass are enabled, to disable these options comme
 Variables & mixins file, as well as custom resets in addition to or overriding _normalize.scss.  Only basic properties added initially.
 
 ## Versionlog & Updates
+###v1.1.1
++ Created placeholder files(_nav.css & _articles.scss) to include missing directories(/css/sass/modules & /css/sass/themes) in repository.
+
 ###v1.1
 + Added universal stylesheet for IE8 down, just a minified version of https://code.google.com/p/universal-ie6-css/ by Andy Clarke.
-+ Added susy support
++ Added susy support.
