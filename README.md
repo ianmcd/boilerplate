@@ -14,7 +14,7 @@ Susy is REQUIRED by default.  If you are not planning on using susy you will nee
 Master import file, susy and compass are enabled, to disable these options comment out their respective @import lines.
 
 ####styleguide.scss
-Used in conjunction with styleguide.html, should only really need to edit certain styleguide specific variables, everything else wilkl be pulled in from master sheet.
+Used in conjunction with styleguide.html, should only really need to edit certain styleguide specific variables, everything else will be pulled in from master sheet.
 
 ####_settings.scss
 Variables & mixins file, as well as custom resets in addition to or overriding _normalize.scss.  Only basic properties added initially.
