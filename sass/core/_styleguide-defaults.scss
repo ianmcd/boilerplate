@@ -1,0 +1,203 @@
+@import 'compass';
+
+// FRAMEWORK FONTS
+@import url('http://fonts.googleapis.com/css?family=Lato:400,700,900,400italic,700italic,900italic|Roboto+Slab:400,700');
+
+
+// STYLEGUIDE DEFAULT SWATCH COLOR --- FOR INITIAL STATE DISPLAY
+$sg_default: 	#ccc;
+$sg_border-color: #ddd;
+$sg_border-color-alt: #efefef;
+
+$sg_sans: 'Lato', sans-serif;
+$sg_serif: 'Roboto Slab', serif;
+
+
+// STYLEGUIDE COLOR SWATCH MIXIN
+// Automatically sets up 80/60/40/20 opacities for color swatches.
+// See usage below, indicated by @1
+@mixin sg_swatch($color) {
+	background-color: $color;
+	
+	&.style-cs80 { background-color: rgba($color, 0.8); }
+	&.style-cs60 { background-color: rgba($color, 0.6); }
+	&.style-cs40 { background-color: rgba($color, 0.4); }
+	&.style-cs20 { background-color: rgba($color, 0.2); }
+}
+
+#styleguide {
+	code.style-code {
+		background-color: #efefef;
+		border: 1px solid $sg_border-color;
+		padding: 2px 4px;
+	}
+	
+	ul.color {
+		border: 1px solid $sg_border-color;
+		color: #222;
+		@include border-radius(3px);
+		font-family: $sg_sans;
+		float: left;
+		list-style: none;
+		margin-right: 2%;
+		padding: 10px 0;
+		width: 23%;
+		
+		li ul {
+			margin: 10px 0 0;
+			padding: 0 15px;
+			list-style: none;
+			width: 100%;
+			
+			li {
+				font-size: 14px;
+				line-height: 21px;
+			}
+		}
+		
+		li:first-child {
+			span { 
+				color: #fff;
+				display: block;
+				font-size: 15px;
+				font-weight: 900;
+				height: 60px; 
+				padding: 5px 15px;
+				@include text-shadow(0 0 1px rgba(0, 0, 0, 0.5));
+				width: 100%;
+			}
+		}
+		
+		li:nth-child(2) {
+			span { 
+				color: #fff;
+				display: inline-block;
+				font-size: 13px;
+				font-weight: 900;
+				height: 30px;
+				line-height: 30px;
+				text-align: center;
+				@include text-shadow(0 0 1px rgba(0, 0, 0, 0.5));
+				width: 25%; 
+			}
+		}
+		
+		// @1 -- default swatch color using swatch mixin
+		&.default { 
+			span { @include sg_swatch($sg_default); }
+		}
+	}
+	
+	h1.style-main-title {
+		color: #222;
+		font-family: $sg_sans;
+		font-size: 48px;
+		font-weight: 900;
+		letter-spacing: -1px;
+		text-transform: uppercase;
+	}
+	
+	h2.style-section-title {
+		color: #222;
+		font-family: $sg_sans;
+		font-size: 25px;
+		font-weight: 900;
+		letter-spacing: -0.5px;
+		margin: 25px 0; 
+		text-transform: uppercase;
+	}
+	
+	h3.style-article-title {
+		color: #333;
+		font-family: $sg_sans;
+		font-size: 15px;
+		font-weight: 400;
+		margin: 0;
+		text-transform: lowercase;
+		
+		&.spec {
+			color: #222;
+			font-family: $sg_serif;
+			font-size: 30px;
+			font-weight: 700;
+			letter-spacing: -0.5px;
+			text-transform: capitalize;
+		}
+	}
+	
+	h4.style-article-title {
+		color: rgba(0, 0, 0, 0.35);
+		font-family: $sg_sans;
+		font-size: 13px;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: normal;
+		
+		&.alt { color: rgba(255, 255, 255, 0.35); }
+	}
+	
+	#header {
+		background: #f9f9f9;
+		border-bottom: 1px solid $sg_border-color;
+		height: 65px;
+		line-height: 45px;
+		padding: 10px 20px;
+		position: fixed;
+		width: 100%;
+		top: 0;
+		z-index: 100;
+	}
+	
+	.wrapper {
+		margin-top: 65px;
+		padding: 0 20px;
+	}
+	
+	#title {
+		border-bottom: 1px solid $sg_border-color;
+		margin-bottom: 20px;
+		padding: 40px 0;
+		
+		h1 { margin: 0; }
+	}
+	
+	section {
+		border-bottom: 1px solid $sg_border-color;
+		margin-bottom: 40px;
+		padding-bottom: 40px;
+		
+		&:last-child { border: 0; }
+		
+		article { 
+			border: 1px solid $sg_border-color;
+			@include border-radius(3px);
+			margin-bottom: 40px; 
+			width: 100%;
+			&:last-child { margin-bottom: 0; }
+			@include pie-clearfix;
+			
+			.styles {
+				padding: 8px 15px;
+			}
+			
+			header {
+				background-color: #f1f1f1;
+				border-bottom: 1px solid $sg_border-color-alt;
+				padding: 8px 15px;
+				
+			}
+			
+			&.open {
+				border: 0;
+				@include border-radius(0);
+				
+				header {
+					background: transparent;
+					border: 0;
+					padding: 0;
+				}
+			}
+		}
+		
+	}
+}
