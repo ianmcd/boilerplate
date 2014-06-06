@@ -16,6 +16,18 @@ Used in conjunction with styleguide.html, should only really need to edit certai
 Variables & mixins file, as well as custom resets in addition to or overriding _normalize.scss.  Only basic properties added initially.
 
 
+##Basic usage
+
+In console:
+	grunt serve
+	
+Starts a livereload server on port :4444 and watches the dev directory for file changes, compiling sass and minifying js before refreshing.
+
+	grunt build
+
+Builds application from dev directory, minifying and optimizing into dist directory.
+
+
 ## Versionlog & Updates
 ###v0.2.1
 + Restructured to be a bit more effective
