@@ -29,6 +29,8 @@ Builds application from dev directory, minifying and optimizing into dist direct
 ## Versionlog & Updates
 ###v0.2.1
 + Restructured to be a bit more effective
++ Removed styleguide
++ Added angular.js and grunt-ngmin
 + Add multiple grunt plugins:
 	+ grunt-contrib-connect
 	+ grunt-contrib-copy
@@ -40,10 +42,9 @@ Builds application from dev directory, minifying and optimizing into dist direct
 	+ grunt-karma
 	+ time-grunt
 	+ load-grunt-tasks
-+ Removed styleguide
 
 ###v0.2.0
-+ Completely rearranged direcory structure
++ Completely rearranged directory structure
 + Added grunt & grunt configuration files, added support for: 
 	+ grunt-contrib-concat(https://github.com/gruntjs/grunt-contrib-concat)
 	+ grunt-contrib-uglify(https://github.com/gruntjs/grunt-contrib-uglify)
