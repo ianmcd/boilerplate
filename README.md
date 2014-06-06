@@ -17,7 +17,21 @@ Variables & mixins file, as well as custom resets in addition to or overriding _
 
 
 ## Versionlog & Updates
-###v2.0.0
+###v0.2.1
++ Restructured to be a bit more effective
++ Add multiple grunt plugins:
+	+ grunt-contrib-connect
+	+ grunt-contrib-copy
+	+ grunt-contrib-htmlmin
+	+ grunt-contrib-jshint
+	+ grunt-ngmin
+	+ jshint-stylish
+	+ karma
+	+ grunt-karma
+	+ time-grunt
+	+ load-grunt-tasks
+
+###v0.2.0
 + Completely rearranged direcory structure
 + Added grunt & grunt configuration files, added support for: 
 	+ grunt-contrib-concat(https://github.com/gruntjs/grunt-contrib-concat)
@@ -26,15 +40,15 @@ Variables & mixins file, as well as custom resets in addition to or overriding _
 	+ grunt-contrib-sass(https://github.com/gruntjs/grunt-contrib-sass)
 	+ grunt-contrib-watch(https://github.com/gruntjs/grunt-contrib-watch)
 
-###v1.2
+###v0.1.2
 + Merged 'styleguide' project into this project.
 + Rearranged directories to allow for more indepth config.rb options
 + Made config.rb a bit more detailed
 + Made susy required moving forward(can still be removed, it's just included by default)
 
-###v1.1.1
+###v0.1.1
 + Created placeholder files(_nav.css & _articles.scss) to include missing directories(/css/sass/modules & /css/sass/themes) in repository.
 
-###v1.1
+###v0.1
 + Added universal stylesheet for IE8 down, just a minified version of https://code.google.com/p/universal-ie6-css/ by Andy Clarke.
 + Added susy support.
