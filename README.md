@@ -19,6 +19,7 @@ Variables & mixins file, as well as custom resets in addition to or overriding _
 ##Basic usage
 
 In console:
+
 	grunt serve
 	
 Starts a livereload server on port :4444 and watches the dev directory for file changes, compiling sass and minifying js before refreshing.
