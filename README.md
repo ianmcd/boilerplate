@@ -9,9 +9,6 @@ Use of this system assumes you know how to configure [Grunt](http://gruntjs.com/
 ####system.scss
 Master import file, susy and compass are enabled, to disable these options comment out their respective @import lines.
 
-####styleguide.scss
-Used in conjunction with styleguide.html, should only really need to edit certain styleguide specific variables, everything else will be pulled in from master sheet.
-
 ####_settings.scss
 Variables & mixins file, as well as custom resets in addition to or overriding _normalize.scss.  Only basic properties added initially.
 
@@ -43,6 +40,7 @@ Builds application from dev directory, minifying and optimizing into dist direct
 	+ grunt-karma
 	+ time-grunt
 	+ load-grunt-tasks
++ Removed styleguide
 
 ###v0.2.0
 + Completely rearranged direcory structure
