@@ -1,4 +1,4 @@
-{	
+{
   "node": true,
   "browser": true,
   "esnext": true,
@@ -19,8 +19,6 @@
   "trailing": true,
   "smarttabs": true,
   "globals": {
-  	"app": false,
-    "angular": false,
-    "Firebase": false
+  	"$": false,
    }
 }
