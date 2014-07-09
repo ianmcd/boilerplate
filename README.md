@@ -18,7 +18,7 @@ Variables & mixins file, as well as custom resets in addition to or overriding _
 In console:
 
 	grunt serve
-	
+
 Starts a livereload server on port :4444 and watches the dev directory for file changes, compiling sass and minifying js before refreshing.
 
 	grunt build
@@ -27,6 +27,16 @@ Builds application from dev directory, minifying and optimizing into dist direct
 
 
 ## Versionlog & Updates
+###v0.2.2
++ Fixed issue where LiveReload was not firing on updates to css & js files
++ Fixed issue where jshint was debugging library files & already concatenated files.
++ Removed jshint:afterconcat from Grunfile.js
++	Removed angular.js & main.js from lib directory
++ Removed following grunt plugins:
+	+ grunt-ngmin
+	+ karma
+	+ grunt-karma
+
 ###v0.2.1
 + Restructured to be a bit more effective
 + Removed styleguide
@@ -45,7 +55,7 @@ Builds application from dev directory, minifying and optimizing into dist direct
 
 ###v0.2.0
 + Completely rearranged directory structure
-+ Added grunt & grunt configuration files, added support for: 
++ Added grunt & grunt configuration files, added support for:
 	+ grunt-contrib-concat(https://github.com/gruntjs/grunt-contrib-concat)
 	+ grunt-contrib-uglify(https://github.com/gruntjs/grunt-contrib-uglify)
 	+ grunt-contrib-imagemin(https://github.com/gruntjs/grunt-contrib-imagemin)

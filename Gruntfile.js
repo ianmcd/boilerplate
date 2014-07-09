@@ -3,13 +3,13 @@
 module.exports = function(grunt) {
 	//	loads grunt tasks automatically
 	require('load-grunt-tasks')(grunt);
-	
+
 	//	times tasks for better optimization
 	require('time-grunt')(grunt);
-	
+
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
-		
+
 		//	js concatenation
 		concat: {
 			dev: {
@@ -17,7 +17,7 @@ module.exports = function(grunt) {
 				dest: 'http/dev/js/production.js',
 			},
 		},
-		
+
 		//	grunt server
 		connect: {
 			server: {
@@ -30,11 +30,11 @@ module.exports = function(grunt) {
 				},
 			},
 		},
-		
-		//	html minification 
+
+		//	html minification
 		htmlmin: {
 			dist: {
-				options: { 
+				options: {
 					collapseWhitespace: true,
 					collapseBooleanAttributes: true,
 					removeComments: true,
@@ -47,7 +47,7 @@ module.exports = function(grunt) {
 				}],
 			},
 		},
-		
+
 		//	image minification
 		imagemin: {
 			dynamic: {
@@ -59,22 +59,21 @@ module.exports = function(grunt) {
 				}],
 			},
 		},
-		
+
 		//	basic error checking for js files
 		jshint: {
 			options: {
 				jshintrc: '.jshintrc',
 				reporter: require('jshint-stylish')
 			},
-			beforeconcat: ['Gruntfile.js', 'http/dev/js/**/*.js'],
-			afterconcat: ['http/dev/js/production.js'],
+			beforeconcat: ['Gruntfile.js', 'http/dev/js/**/*.js', '!http/dev/js/lib/**/*.js', '!http/dev/js/production.js', '!http/dev/js/production.min.js'],
 		},
-		
+
 		//	sass
 		sass: {
 			options: {
 				style: 'compressed',
-				compass: 'true', 
+				compass: 'true',
 				require: 'susy'
 		    },
 			dev: {
@@ -88,7 +87,7 @@ module.exports = function(grunt) {
 		        },
 	        },
 		},
-		
+
 		//	js minification
 		uglify: {
 			options: {
@@ -103,48 +102,32 @@ module.exports = function(grunt) {
 		        dest: 'http/dist/js/production.min.js',
 	        },
 		},
-		
-		//	angular minification
-		ngmin: {
-			dev: {
-				expand: true,
-				cwd: 'http/dev/js/',
-				src: 'production.js',
-				dest: 'http/dev/js/',
-			},
-		},
-		
+
 		//	watches files / runs tasks as needed
-		watch: { 
+		watch: {
 			js: {
 				files: ['http/dev/js/*.js'],
-		        tasks: ['jshint:beforeconcat', 'concat', 'jshint:afterconcat', 'ngmin', 'uglify'],
+		        tasks: ['jshint:beforeconcat', 'concat', 'uglify'],
 			},
 	        css: {
 		        files: ['http/dev/sass/**/*.scss'],
 		        tasks: ['sass:dev'],
 	        },
 	        livereload: {
-		        options: { 
+		        options: {
 		        	livereload: true,
 		        },
 		        files: [
 		        	'http/dev/**/*.html',
-		        	
+		        	'http/dev/**/*.css',
+							'http/dev/**/*.js',
 		        ],
 	        }
 		},
-		
-		karma: {
-			unit: {
-				configFile: 'karma.conf.js',
-				singleRun: true
-			}
-		},
-		
+
 		copy: {
 			dist: {
-				files: [{ 
+				files: [{
 					expand: true,
 					cwd: 'http/dev/',
 					src: '*.{txt,ico}',
@@ -153,28 +136,26 @@ module.exports = function(grunt) {
 			},
 		},
 	});
-	
+
 	//	TASKS
-	
+
 	grunt.registerTask('serve', [
 		'concat',
-		'ngmin',
 		'uglify:dev',
 		'sass:dev',
 		'connect',
 		'watch',
 	]);
-	
+
 	grunt.registerTask('build', [
 		'concat',
-		'ngmin',
 		'uglify:dist',
 		'sass:dist',
 		'htmlmin',
 		'imagemin',
 		'copy',
 	]);
-	
+
 	grunt.registerTask('default', [
 		'build',
 		'serve',
