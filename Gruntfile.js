@@ -119,7 +119,7 @@ module.exports = function(grunt) {
 		        },
 		        files: [
 		        	'http/dev/**/*.html',
-		        	'http/dev/**/*.css',
+		        	'http/dev/**/*.sass',
 							'http/dev/**/*.js',
 		        ],
 	        }

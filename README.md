@@ -29,10 +29,12 @@ Builds application from dev directory, minifying and optimizing into dist direct
 ## Versionlog & Updates
 ###v0.2.3
 +	Added bootstrap.css cdn for convenience(rapid dev)
++ Fixed issue where css building would repeat after changes to sass files
++ Removed errant punctuation from README file ;)
 
 ###v0.2.2
 + Fixed issue where LiveReload was not firing on updates to css & js files
-+ Fixed issue where jshint was debugging library files & already concatenated files.
++ Fixed issue where jshint was debugging library files & already concatenated files
 + Removed jshint:afterconcat from Grunfile.js
 +	Removed angular.js & main.js from lib directory
 + Removed following grunt plugins:
@@ -72,8 +74,8 @@ Builds application from dev directory, minifying and optimizing into dist direct
 + Made susy required moving forward(can still be removed, it's just included by default)
 
 ###v0.1.1
-+ Created placeholder files(_nav.css & _articles.scss) to include missing directories(/css/sass/modules & /css/sass/themes) in repository.
++ Created placeholder files(_nav.css & _articles.scss) to include missing directories(/css/sass/modules & /css/sass/themes) in repository
 
 ###v0.1
-+ Added universal stylesheet for IE8 down, just a minified version of https://code.google.com/p/universal-ie6-css/ by Andy Clarke.
-+ Added susy support.
++ Added universal stylesheet for IE8 down, just a minified version of https://code.google.com/p/universal-ie6-css/ by Andy Clarke
++ Added susy support
