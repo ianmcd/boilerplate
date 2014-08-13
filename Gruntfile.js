@@ -13,7 +13,7 @@ module.exports = function(grunt) {
 		//	js concatenation
 		concat: {
 			dev: {
-				src: ['http/dev/js/**/*.js', '!http/dev/js/production.js', '!http/dev/js/production.min.js' ],
+				src: ['http/dev/js/lib/jquery.2.0.3.min.js', 'http/dev/js/lib/**/*.js', 'http/dev/js/**/*.js', '!http/dev/js/production.js', '!http/dev/js/production.min.js' ],
 				dest: 'http/dev/js/production.js',
 			},
 		},
