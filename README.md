@@ -27,6 +27,9 @@ Builds application from dev directory, minifying and optimizing into dist direct
 
 
 ## Versionlog & Updates
+###v0.2.3
++	Added bootstrap.css cdn for convenience(rapid dev)
+
 ###v0.2.2
 + Fixed issue where LiveReload was not firing on updates to css & js files
 + Fixed issue where jshint was debugging library files & already concatenated files.
