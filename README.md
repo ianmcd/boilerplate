@@ -30,7 +30,7 @@ Builds application from dev directory, minifying and optimizing into dist direct
 ###v0.2.3
 +	Added bootstrap.css cdn for convenience(rapid dev)
 + Fixed issue where css building would repeat after changes to sass files
-+ Updated the concat statement in Grunfile.js to always load jquery first followed by every other lib file
++ Updated the concat statement in Gruntfile.js to always load jquery first followed by every other lib file
 + Removed errant punctuation from README file ;)
 
 ###v0.2.2
