@@ -27,6 +27,16 @@ Builds application from dev directory, minifying and optimizing into dist direct
 
 
 ## Versionlog & Updates
+###v0.2.4
+####VERSION CURRENTLY UNTESTED
++ Fixed more(heh) README mispellings!
++ Added grunt tasks: grunt-contrib-clean, grunt-concurrent
++ Updated package versions
++ Added configurable paths to Gruntfile.js
++ Added Sass sourcemapping
++ Added JS sourcemapping
+
+
 ###v0.2.3
 +	Added bootstrap.css cdn for convenience(rapid dev)
 + Fixed issue where css building would repeat after changes to sass files
