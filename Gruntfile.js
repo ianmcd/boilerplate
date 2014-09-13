@@ -10,7 +10,7 @@ module.exports = function(grunt) {
 	//configurable paths
 	var config = {
 		dev: 'http/dev',
-		dist: 'http/www'
+		dist: 'http/dist'
 	};
 
 	grunt.initConfig({
@@ -20,8 +20,8 @@ module.exports = function(grunt) {
 		//	js concatenation
 		concat: {
 			dev: {
-				src: ['<%= config.dev =%>/js/lib/jquery.2.0.3.min.js', '<%= config.dev =%>/js/lib/**/*.js', '<%= config.dev =%>/js/**/*.js', '!<%= config.dev =%>/js/production.js' ],
-				dest: '<%= config.dev =%>/js/production.js',
+				src: ['http/dev/js/lib/jquery.2.0.3.min.js', 'http/dev/js/lib/**/*.js', 'http/dev/js/**/*.js', '!http/dev/js/production.js' ],
+				dest: 'http/dev/js/production.js',
 			},
 		},
 
@@ -34,10 +34,14 @@ module.exports = function(grunt) {
 				livereload: 35729
 			},
 			dev: {
-				base: '<%= config.dev =%>'
+				options: {
+					base: 'http/dev'
+				}
 			},
 			dist: {
-				base: '<%= config.dist =%>'
+				options: {
+					base: 'http/dist'
+				}
 			}
 		},
 
@@ -53,9 +57,9 @@ module.exports = function(grunt) {
 				},
 				files: [{
 					expand: true,
-					cwd: '<%= config.dev =%>',
+					cwd: 'http/dev',
 					src: '**/*.html',
-					dest: '<%= config.dist =%>',
+					dest: 'http/dist',
 				}],
 			},
 		},
@@ -65,9 +69,9 @@ module.exports = function(grunt) {
 			dynamic: {
 				files: [{
 					expand: true,
-					cwd: '<%= config.dev =%>',
+					cwd: 'http/dev',
 					src: ['**/*.{png,jpg,jpeg,gif,svg}'],
-					dest: '<%= config.dist =%>',
+					dest: 'http/dist',
 				}],
 			},
 		},
@@ -78,7 +82,7 @@ module.exports = function(grunt) {
 				jshintrc: '.jshintrc',
 				reporter: require('jshint-stylish')
 			},
-			beforeconcat: ['Gruntfile.js', '<%= config.dev =%>/js/**/*.js', '!<%= config.dev =%>/js/lib/**/*.js', '!<%= config.dev =%>/js/production.js', '!<%= config.dev =%>/js/production.min.js'],
+			beforeconcat: ['Gruntfile.js', 'http/dev/js/**/*.js', '!http/dev/js/lib/**/*.js', '!http/dev/js/production.js', '!http/dev/js/production.min.js'],
 		},
 
 		//	sass
@@ -91,12 +95,12 @@ module.exports = function(grunt) {
 		    },
 			dev: {
 		    files: {
-			    '<%= config.dev =%>/css/system.css': '<%= config.dev =%>/sass/system.scss',
+			    'http/dev/css/system.css': 'http/dev/sass/system.scss',
 		    },
 	    },
 	    dist: {
 		    files: {
-			    '<%= config.dist =%>/css/system.css': '<%= config.dev =%>/sass/system.scss',
+			    'http/dist/css/system.css': 'http/dev/sass/system.scss',
 		    },
 	    },
 		},
@@ -122,23 +126,23 @@ module.exports = function(grunt) {
 				sourceMap: true,
 			},
 	    dev: {
-		    src: '<%= config.dev =%>/js/production.js',
-		    dest: '<%= config.dev =%>/js/production.min.js',
+		    src: 'http/dev/js/production.js',
+		    dest: 'http/dev/js/production.min.js',
 	    },
 	    dist: {
-		    src: '<%= config.dev =%>/js/production.js',
-		    dest: '<%= config.dist =%>/js/production.min.js',
+		    src: 'http/dev/js/production.js',
+		    dest: 'http/dist/js/production.min.js',
 	    },
 		},
 
 		//	watches files / runs tasks as needed
 		watch: {
 			js: {
-				files: ['<%= config.dev =%>/js/*.js'],
-		    tasks: ['jshint:beforeconcat', 'concat', 'uglify'],
+				files: ['http/dev/js/*.js', '!http/dev/js/production.min.js'],
+		    tasks: ['jshint:beforeconcat', 'concat', 'uglify:dev'],
 			},
 	    css: {
-		    files: ['<%= config.dev =%>/sass/**/*.scss'],
+		    files: ['http/dev/sass/**/*.scss'],
 		    tasks: ['sass:dev'],
 	    },
 	    livereload: {
@@ -146,9 +150,9 @@ module.exports = function(grunt) {
 		      livereload: true,
 		    },
 		    files: [
-		      '<%= config.dev =%>/**/*.html',
-		      '<%= config.dev =%>/**/*.css',
-					'<%= config.dev =%>/**/*.js',
+		      'http/dev/**/*.html',
+		      'http/dev/**/*.css',
+					'http/dev/**/*.js',
 		    ],
 	    }
 		},
@@ -158,9 +162,9 @@ module.exports = function(grunt) {
 				files: [{
 					expand: true,
 					dot: true,
-					cwd: '<%= config.dev =%>',
+					cwd: 'http/dev',
 					src: '*.{txt,ico}',
-					dest: '<%= config.dist =%>',
+					dest: 'http/dist',
 				}],
 			},
 		},
@@ -184,7 +188,8 @@ module.exports = function(grunt) {
 		'htmlmin',
 		'imagemin',
 		'copy',
-		'connect: dist',
+		'connect:dist',
+		'watch'
 	]);
 
 	grunt.registerTask('default', [
