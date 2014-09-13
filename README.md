@@ -28,7 +28,6 @@ Builds application from dev directory, minifying and optimizing into dist direct
 
 ## Versionlog & Updates
 ###v0.2.4
-####VERSION CURRENTLY UNTESTED
 + Fixed more(heh) README mispellings!
 + Added grunt tasks: grunt-contrib-clean, grunt-concurrent
 + Updated package versions
