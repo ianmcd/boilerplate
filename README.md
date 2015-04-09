@@ -2,31 +2,20 @@
 
 Personal starting point configuration for web projects.  Incorporates a few different ideas/systems mixed to my liking, use at own risk.  Newest version is still very new and parts are untested.
 
-
-##Configuration
-Use of this system assumes you know how to configure [Grunt](http://gruntjs.com/), [Sass](http://sass-lang.com/) and optionally [Susy](http://susy.oddbird.net/).  To remove Susy support edit Gruntfile.js and system.scss.
-
-####system.scss
-Master import file, susy and compass are enabled, to disable these options comment out their respective @import lines.
-
-####_settings.scss
-Variables & mixins file, as well as custom resets in addition to or overriding _normalize.scss.  Only basic properties added initially.
-
-
-##Basic usage
-
-In console:
-
-	grunt serve
-
-Starts a livereload server on port :4444 and watches the dev directory for file changes, compiling sass and minifying js before refreshing.
-
-	grunt build
-
-Builds application from dev directory, minifying and optimizing into dist directory.
+##Todo
++ better readme file
 
 
 ## Versionlog & Updates
+###v1.0.0
++ restructured dir setup: removed /dev/ and /dist/
++ added scss linter
++ added autoprefixer
++ removed a handful of grunt plugins i found myself constantly removing
++ fixed the issue that caused uglify to hang indefinitely
++ removed a lot of outdated README garbage
+
+
 ###v0.2.4
 + Fixed more(heh) README mispellings!
 + Added grunt tasks: grunt-contrib-clean, grunt-concurrent
@@ -48,34 +37,34 @@ Builds application from dev directory, minifying and optimizing into dist direct
 + Removed jshint:afterconcat from Grunfile.js
 +	Removed angular.js & main.js from lib directory
 + Removed following grunt plugins:
-	+ grunt-ngmin
-	+ karma
-	+ grunt-karma
+  + grunt-ngmin
+  + karma
+  + grunt-karma
 
 ###v0.2.1
 + Restructured to be a bit more effective
 + Removed styleguide
 + Added angular.js and grunt-ngmin
 + Add multiple grunt plugins:
-	+ grunt-contrib-connect
-	+ grunt-contrib-copy
-	+ grunt-contrib-htmlmin
-	+ grunt-contrib-jshint
-	+ grunt-ngmin
-	+ jshint-stylish
-	+ karma
-	+ grunt-karma
-	+ time-grunt
-	+ load-grunt-tasks
+  + grunt-contrib-connect
+  + grunt-contrib-copy
+  + grunt-contrib-htmlmin
+  + grunt-contrib-jshint
+  + grunt-ngmin
+  + jshint-stylish
+  + karma
+  + grunt-karma
+  + time-grunt
+  + load-grunt-tasks
 
 ###v0.2.0
 + Completely rearranged directory structure
 + Added grunt & grunt configuration files, added support for:
-	+ grunt-contrib-concat(https://github.com/gruntjs/grunt-contrib-concat)
-	+ grunt-contrib-uglify(https://github.com/gruntjs/grunt-contrib-uglify)
-	+ grunt-contrib-imagemin(https://github.com/gruntjs/grunt-contrib-imagemin)
-	+ grunt-contrib-sass(https://github.com/gruntjs/grunt-contrib-sass)
-	+ grunt-contrib-watch(https://github.com/gruntjs/grunt-contrib-watch)
+  + grunt-contrib-concat(https://github.com/gruntjs/grunt-contrib-concat)
+  + grunt-contrib-uglify(https://github.com/gruntjs/grunt-contrib-uglify)
+  + grunt-contrib-imagemin(https://github.com/gruntjs/grunt-contrib-imagemin)
+  + grunt-contrib-sass(https://github.com/gruntjs/grunt-contrib-sass)
+  + grunt-contrib-watch(https://github.com/gruntjs/grunt-contrib-watch)
 
 ###v0.1.2
 + Merged 'styleguide' project into this project.

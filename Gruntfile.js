@@ -1,199 +1,151 @@
-'use strict';
+/* global module, require */
 
 module.exports = function(grunt) {
-	//	loads grunt tasks automatically
-	require('load-grunt-tasks')(grunt);
+  'use strict';
 
-	//	times tasks for future optimization
-	require('time-grunt')(grunt);
+  //	loads grunt tasks automatically
+  require('load-grunt-tasks')(grunt);
 
-	//configurable paths
-	var config = {
-		dev: 'http/dev',
-		dist: 'http/dist'
-	};
+  //	times tasks for future optimization
+  require('time-grunt')(grunt);
 
-	grunt.initConfig({
-		pkg: grunt.file.readJSON('package.json'),
-		config: config,
+  var autoprefixer = require('autoprefixer-core');
 
-		//	js concatenation
-		concat: {
-			dev: {
-				src: ['http/dev/js/lib/jquery.2.0.3.min.js', 'http/dev/js/lib/**/*.js', 'http/dev/js/**/*.js', '!http/dev/js/production.js' ],
-				dest: 'http/dev/js/production.js',
-			},
-		},
+  grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json'),
 
-		//	grunt server
-		connect: {
-			options: {
-				port: 4444,
-				hostname: 'localhost',
-				open: true,
-				livereload: 35729
-			},
-			dev: {
-				options: {
-					base: 'http/dev'
-				}
-			},
-			dist: {
-				options: {
-					base: 'http/dist'
-				}
-			}
-		},
+    //	js concatenation
+    concat: {
+      dev: {
+        src: [
+          'http/js/lib/jquery.2.0.3.min.js',
+          'http/js/lib/**/*.js',
+          'http/js/**/*.js',
+          '!http/js/ignore/**/*.js',
+          '!http/js/build/**/*.js',
+          '!http/js/data/**/*.js'
+        ],
+        dest: 'http/js/build/production.js'
+      }
+    },
 
-		//	html minification
-		htmlmin: {
-			dist: {
-				options: {
-					collapseWhitespace: true,
-					collapseBooleanAttributes: true,
-					removeComments: true,
-					removeRedundantAttributes: true,
-          useShortDoctype: true
-				},
-				files: [{
-					expand: true,
-					cwd: 'http/dev',
-					src: '**/*.html',
-					dest: 'http/dist',
-				}],
-			},
-		},
+    //	grunt server
+    connect: {
+      options: {
+        port: 4444,
+        hostname: 'localhost',
+        open: true,
+        livereload: 35729
+      },
+      dev: {
+        options: {
+          base: 'http'
+        }
+      }
+    },
 
-		//	image minification
-		imagemin: {
-			dynamic: {
-				files: [{
-					expand: true,
-					cwd: 'http/dev',
-					src: ['**/*.{png,jpg,jpeg,gif,svg}'],
-					dest: 'http/dist',
-				}],
-			},
-		},
+    //	basic error checking for js files
+    jshint: {
+      options: {
+        jshintrc: '.jshintrc',
+        reporter: require('jshint-stylish')
+      },
+      beforeconcat: [
+        'Gruntfile.js',
+        'http/js/**/*.js',
+        '!http/js/lib/**/*.js',
+        '!http/js/build/**/*.js',
+        '!http/js/ignore/**/*.js',
+        '!http/js/data/**/*.js'
+      ]
+    },
 
-		//	basic error checking for js files
-		jshint: {
-			options: {
-				jshintrc: '.jshintrc',
-				reporter: require('jshint-stylish')
-			},
-			beforeconcat: ['Gruntfile.js', 'http/dev/js/**/*.js', '!http/dev/js/lib/**/*.js', '!http/dev/js/production.js', '!http/dev/js/production.min.js'],
-		},
+    // scss linter
+    scsslint: {
+      allFiles: [
+        'http/sass/**/*.scss'
+      ],
+      options: {
+        config: '.scss-lint.yml',
+        reporterOutput: 'scss-lint-report.xml',
+        colorizeOutput: true
+      }
+    },
 
-		//	sass
-		sass: {
-			options: {
-				sourcemap: true,
-				style: 'compressed',
-				compass: 'true',
-				require: 'susy'
-		    },
-			dev: {
-		    files: {
-			    'http/dev/css/system.css': 'http/dev/sass/system.scss',
-		    },
-	    },
-	    dist: {
-		    files: {
-			    'http/dist/css/system.css': 'http/dev/sass/system.scss',
-		    },
-	    },
-		},
+    //	sass
+    sass: {
+      options: {
+        sourcemap: 'auto',
+        style: 'compressed',
+        compass: true,
+        require: 'susy'
+        },
+      dev: {
+        files: {
+          'http/css/system.css': 'http/sass/system.scss'
+        }
+      }
+    },
 
-		// clean dist directory
-		clean: {
-			dist: {
-				files: [{
-					dot: true,
-					src: [
-						'.tmp',
-						'<%= config.dist %>/*',
-            '!<%= config.dist %>/.git*'
-					]
-				}],
-				server: '.tmp'
-			}
-		},
+    //	js minification
+    uglify: {
+      options: {
+        sourceMap: true
+      },
+      dev: {
+        src: 'http/js/build/production.js',
+        dest: 'http/js/build/production.min.js'
+      }
+    },
 
-		//	js minification
-		uglify: {
-			options: {
-				sourceMap: true,
-			},
-	    dev: {
-		    src: 'http/dev/js/production.js',
-		    dest: 'http/dev/js/production.min.js',
-	    },
-	    dist: {
-		    src: 'http/dev/js/production.js',
-		    dest: 'http/dist/js/production.min.js',
-	    },
-		},
+    // postcss w/ autoprefixer
+    postcss: {
+      options: {
+        processors: [
+          autoprefixer({ browsers: ['last 2 version', 'ie >= 9'] }).postcss
+        ],
+        map: true
+      },
+      dist: { src: 'http/css/system.css' }
+    },
 
-		//	watches files / runs tasks as needed
-		watch: {
-			js: {
-				files: ['http/dev/js/*.js', '!http/dev/js/production.min.js'],
-		    tasks: ['jshint:beforeconcat', 'concat', 'uglify:dev'],
-			},
-	    css: {
-		    files: ['http/dev/sass/**/*.scss'],
-		    tasks: ['sass:dev'],
-	    },
-	    livereload: {
-		    options: {
-		      livereload: true,
-		    },
-		    files: [
-		      'http/dev/**/*.html',
-		      'http/dev/**/*.css',
-					'http/dev/**/*.js',
-		    ],
-	    }
-		},
+    //	watches files / runs tasks as needed
+    watch: {
+      js: {
+        files: ['http/js/*.js'],
+        tasks: ['jshint', 'concat', 'uglify']
+      },
+      css: {
+        files: ['http/sass/**/*.scss'],
+        tasks: ['scsslint', 'sass', 'postcss']
+      },
+      livereload: {
+        options: {
+          livereload: true
+        },
+        files: [
+          'http/**/*.html',
+          'http/**/*.css',
+          'http/**/*.js'
+        ]
+      }
+    }
+  });
 
-		copy: {
-			dist: {
-				files: [{
-					expand: true,
-					dot: true,
-					cwd: 'http/dev',
-					src: '*.{txt,ico}',
-					dest: 'http/dist',
-				}],
-			},
-		},
-	});
+  //	TASKS
 
-	//	TASKS
+  grunt.registerTask('serve', [
+    'jshint',
+    'concat',
+    'uglify',
+    'sass',
+    'scsslint',
+    'postcss',
+    'connect',
+    'watch'
+  ]);
 
-	grunt.registerTask('serve', [
-		'concat',
-		'uglify:dev',
-		'sass:dev',
-		'connect:dev',
-		'watch',
-	]);
-
-	grunt.registerTask('build', [
-		'clean:dist',
-		'concat',
-		'uglify:dist',
-		'sass:dist',
-		'htmlmin',
-		'imagemin',
-		'copy',
-		'connect:dist',
-		'watch'
-	]);
-
-	grunt.registerTask('default', [
-		'build',
-		'serve',
-	]);
+  grunt.registerTask('default', [
+    'serve'
+  ]);
 };
