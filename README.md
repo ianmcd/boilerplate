@@ -8,6 +8,7 @@ Personal starting point configuration for web projects.  Incorporates a few diff
 
 ## Versionlog & Updates
 ###v1.0.0
+In an attempt to simplify things a bit, the following changes were made:
 + restructured dir setup: removed /dev/ and /dist/
 + added scss linter
 + added autoprefixer
