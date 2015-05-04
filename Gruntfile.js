@@ -138,8 +138,8 @@ module.exports = function(grunt) {
     'jshint',
     'concat',
     'uglify',
-    'sass',
     'scsslint',
+    'sass',
     'postcss',
     'connect',
     'watch'
